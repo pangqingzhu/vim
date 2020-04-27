@@ -21,6 +21,8 @@ set shiftwidth=4
 set hlsearch
 set incsearch
 set scrolloff=5
+set cursorcolumn
+set cursorline
 "}}}
 
 " 映射{{{
@@ -91,4 +93,33 @@ inoremap <leader>p <c-p>
 
 nnoremap <leader>z <esc>^i//<esc>
 inoremap <leader>z <esc>^i//<esc>
+
+nnoremap <leader>f :call FoldColumnToggle()<cr>
+
+function! FoldColumnToggle()
+    if &foldcolumn
+	setlocal foldcolumn=0
+    else
+	setlocal foldcolumn=4
+    endif
+endfunction
+
+nnoremap <leader>qf :call QuickfixToggle()<cr>
+
+let g:quickfix_is_open=0
+
+function! QuickfixToggle()
+    if g:quickfix_is_open
+	cclose
+	let g:quickfix_is_open=0
+	execute g:quick_return_to_window."wincmd w"
+    else
+	let g:quick_return_to_window=winnr()
+	copen
+	let g:quickfix_is_open=1
+    endif
+endfunction
+
+nnoremap <leader>gs :!git status<cr>
+nnoremap <leader>gc :!git add .<cr>:!git commit -m 'update'<cr>
 "}}}
