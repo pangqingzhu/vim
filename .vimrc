@@ -10,6 +10,7 @@ Plug 'preservim/nerdtree'
 Plug 'morhetz/gruvbox'
 Plug 'mattn/emmet-vim'
 Plug 'vim-scripts/Conque-Shell'
+Plug 'garbas/vim-snipmate'
 
 call plug#end()
 " }}}
